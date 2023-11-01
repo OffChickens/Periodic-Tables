@@ -66,7 +66,7 @@ function hasValidDate(req, res, next) {
       message: `Restaurant is closed on Tuesdays`,
     });
   }
-  if (formattedDate <= new Date()) {
+  if (formattedDate < new Date()) {
     return next({
       status: 400,
       message: `Reservation must be in the future`,
