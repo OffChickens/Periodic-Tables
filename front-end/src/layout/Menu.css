@@ -1,0 +1,9 @@
+.nav-link {
+    color: aliceblue !important
+}
+
+@media screen and (max-width: 943px) {
+    .navbar {
+      width: 100% !important;
+    }
+  }

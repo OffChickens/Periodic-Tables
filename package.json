@@ -47,5 +47,11 @@
   },
   "keywords": [],
   "author": "Thinkful, Inc.",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "jest": "^29.7.0",
+    "knex": "^3.0.1",
+    "nvm": "^0.0.4",
+    "puppeteer": "^10.4.0"
+  }
 }

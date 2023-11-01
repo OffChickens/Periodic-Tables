@@ -1,0 +1,80 @@
+.form {
+    font-size: 16px;
+
+}
+
+/**/
+.form * {
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+.form_title {
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.form_item {
+    displaY: flex;
+    flex-direction: column;
+}
+
+.form_item > * {
+    align-self: flex-start;
+}
+
+.form_label {
+    font-weight: 600;
+    padding: 10px 0;
+
+}
+
+.form_input {
+    width: 100%;
+    max-width: 425px;
+
+    padding: 0.5em;
+    font-size: 0.9;
+
+    outline: none;
+    border: 1px solid #385789;
+    border-radius: 4px;
+    background: #f9f9f9;
+    transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.form_input:focus {
+    background: #ffffff;
+}
+
+.form_input::placeholder {
+    color: #274069;
+}
+
+.form_input--small {
+    max-width: 250px;
+}
+
+.form_btn {
+    margin-top: 15px;
+    margin-right: 10px;
+    font-weight: 600;
+    font-size:1.1em;
+    padding: 10px 16px;
+    color: #ffffff;
+    background: #385789;
+    border: 2px solid #274069;
+    border-radius: 5px;
+}
+
+input.hs-search-field__input {
+    height: 50px;
+    font-size: 14px;
+    background-image: url(https://cdn2.hubspot.net/hubfs/4004166/bioticresearch_website_assets/images/search_icon.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 40px;
+    background-color: #fff;
+    border: 1px solid #000;
+    box-shadow: none;
+}
