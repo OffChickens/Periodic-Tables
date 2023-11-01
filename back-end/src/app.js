@@ -18,13 +18,6 @@ app.use(express.json());
 app.use("/reservations", reservationsRouter);
 app.use("/tables", tablesRouter);
 
-// Serve static files (e.g., in the "public" directory)
-app.use(express.static(path.join(__dirname, "public")));
-
-// Define a catch-all route that serves your main HTML file
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
 
 app.use(notFound);
 app.use(errorHandler);
