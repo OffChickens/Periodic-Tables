@@ -3,7 +3,7 @@
   min-width: 200px;
 }
 
-@media (max-width: 942px) {
+@media (max-width: 1053px) {
   .side-bar {
     width: 100% !important;
     max-width: 100%;
