@@ -48,6 +48,9 @@ function ReservationEdit () {
         return errors;
       }
 
+    const validMobile = (number) =>
+        /^(?:\d{3}-\d{3}-\d{4}|\d{10})$/.test(number);
+
     useEffect(() => {
         const controller = new AbortController();
         readReservation(reservation_id, controller.signal)
@@ -78,6 +81,11 @@ function ReservationEdit () {
         const controller = new AbortController();
 
         const resErrors = validateReservation(reservation);
+
+        if (!validMobile(reservation.mobile_number)) {
+            return setErrors(["Invalid mobile_number format. It should be a 10-digit number with or without dashes."]);
+          }
+
         if (errors.length) {
             return setErrors(resErrors);
         }

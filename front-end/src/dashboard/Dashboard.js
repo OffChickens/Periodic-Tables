@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { finishTable, listReservations, listTables, updateStatus } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import "./Dashboard.css";
+import{today} from "../utils/date-time"
 import { useLocation, useHistory } from "react-router-dom";
 import ReservationList from "../reservations/ReservationList";
 
@@ -11,7 +12,6 @@ import ReservationList from "../reservations/ReservationList";
  *  the date for which the user wants to view reservations.
  * @returns {JSX.Element}
  */
-const today = new Date().toISOString().split("T")[0];
 
 
 
@@ -50,7 +50,9 @@ function Dashboard() {
 
   //Function to handle the today button, which would simply push to the dashboard with no given date (default)
   function handleToday() {
+    console.log(today);
     setDate(today);
+    console.log(today);
     history.push(`/dashboard`);
   }
 

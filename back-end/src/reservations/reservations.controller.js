@@ -53,6 +53,7 @@ function hasValidDate(req, res, next) {
   const time = data["reservation_time"];
   const formattedDate = new Date(`${date}T${time}`);
   const day = new Date(date).getUTCDay();
+  const today = new Date()
 
   if (isNaN(Date.parse(data["reservation_date"]))) {
     return next({
@@ -66,7 +67,7 @@ function hasValidDate(req, res, next) {
       message: `Restaurant is closed on Tuesdays`,
     });
   }
-  if (formattedDate < day) {
+  if (formattedDate <= today) {
     return next({
       status: 400,
       message: `Reservation must be in the future`,
@@ -154,6 +155,19 @@ function isBooked(req, res, next) {
   next();
 }
 
+function validMobile(req, res, next) {
+  const { mobile_number } = req.body.data;
+
+  // Regular expression pattern for a valid mobile_number format (10 digits without dashes)
+  const mobilePattern = /^\d{3}-\d{3}-\d{4}$|^\d{10}$/;
+
+  if (!mobilePattern.test(mobile_number)) {
+    return res.status(404).json({ error: 'Invalid mobile_number format. Please enter 10 digits with or without dashes.' });
+  }
+
+  next();
+}
+
 //Function to ensure that a given reservation exists
 async function reservationExists(req, res, next) {
   const reservation_id = 
@@ -225,9 +239,9 @@ async function updateStatus(req, res) {
 
 module.exports = {
   list: asyncErrorBoundary(list),
-  create: [hasOnlyValidProperties, hasProps, hasValidNumber, hasValidDate, hasValidTime, isBooked, asyncErrorBoundary(create)],
+  create: [hasOnlyValidProperties, hasProps, hasValidNumber, validMobile, hasValidDate, hasValidTime, isBooked, asyncErrorBoundary(create)],
   read: [reservationExists, asyncErrorBoundary(read)],
-  update: [hasOnlyValidProperties, hasProps, hasValidDate, hasValidTime, hasValidNumber, reservationExists, asyncErrorBoundary(update)],
+  update: [hasOnlyValidProperties, hasProps, hasValidDate, hasValidTime, hasValidNumber, validMobile, reservationExists, asyncErrorBoundary(update)],
   updateStatus: [
     reservationExists, hasValidStatus, asyncErrorBoundary(updateStatus),
   ],
